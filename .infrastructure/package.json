@@ -1,0 +1,37 @@
+{
+  "name": "intropage",
+  "version": "0.1.0",
+  "bin": {
+    "intropage": "bin/intropage.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "lint": "eslint --fix bin lib",
+    "secrets": "ts-node github.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "*",
+    "@types/aws-lambda": "*",
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@types/source-map-support": "*",
+    "@typescript-eslint/parser": "*",
+    "aws-cdk": "*",
+    "eslint": "*",
+    "jest": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typescript": "*",
+    "typescript-eslint": "*"
+  },
+  "dependencies": {
+    "@scloud/cdk-github": "*",
+    "@scloud/cdk-patterns": "*",
+    "aws-cdk-lib": "*",
+    "constructs": "*",
+    "source-map-support": "*"
+  }
+}
