@@ -6,14 +6,18 @@ import {
 } from '@scloud/cdk-patterns';
 import { HostedZone, IHostedZone } from 'aws-cdk-lib/aws-route53';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
-// import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
-// import * as path from 'path';
 
-function envVar(name: string, fallback?: string): string {
-  const value = process.env[name] || fallback;
-  if (!value) throw new Error(`Environment variable ${name} is required`);
-  return value;
-}
+// Credentials
+// PERSONAL_ACCESS_TOKEN - create a Github personal access token (classic) with 'repo' scope and set this in .infrastructure/secrets/github.sh using export PERSONAL_ACCESS_TOKEN=ghp_...
+// AWS_PROFILE           - if you've set up a profile to access this account, set this in .infrastructure/secrets/aws.sh using export AWS_PROFILE=...
+
+// Route 53
+const DOMAIN_NAME = 'greenersoftware.net';
+const ZONE_ID = 'Z090260119RJ9I6RT1BLQ';
+
+// Github
+const OWNER = 'greenersoftware';
+const REPO = 'IntroPage'
 
 export default class IntropageStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -21,7 +25,7 @@ export default class IntropageStack extends cdk.Stack {
 
     // You'll need a zone to create DNS records in. This will need to be referenced by a real domain name so that SSL certificate creation can be authorised.
     // NB the DOMAIN_NAME environment variable is defined in .infrastructure/secrets/domain.sh
-    const zone = this.zone(envVar('DOMAIN_NAME'), process.env.ZONE_ID);
+    const zone = this.zone(DOMAIN_NAME, ZONE_ID);
 
     // Bucket to back up infrastructure build inputs/outputs
     // This is useful for backup and for sharing build inputs between developers, but is commentsed out by default
@@ -50,7 +54,7 @@ export default class IntropageStack extends cdk.Stack {
     // * CLOUDFRONT_DISTRIBUTIONID - for invalidating the Cloudfront cache
     new WebFrontend(this, 'cloudfront', {
       zone,
-      domainName: envVar('DOMAIN_NAME'),
+      domainName: DOMAIN_NAME,
       defaultIndex: true,
       redirectWww: true,
       distributionProps: {
@@ -59,9 +63,7 @@ export default class IntropageStack extends cdk.Stack {
     });
 
     // Set up OIDC access from Github Actions - this enables builds to deploy updates to the infrastructure
-    const owner = envVar('OWNER', process.env.USERNAME); // Either OWNER, or USERNAME environment variables can be used
-    const repo = envVar('REPO');
-    githubActions(this).ghaOidcRole({ owner, repo });
+    githubActions(this).ghaOidcRole({ owner: OWNER, repo: REPO });
   }
 
   /**
