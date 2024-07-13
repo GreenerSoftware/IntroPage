@@ -1,2 +1,0 @@
-export DOMAIN_NAME=greenersoftware.net
-export ZONE_ID=Z090260119RJ9I6RT1BLQ
