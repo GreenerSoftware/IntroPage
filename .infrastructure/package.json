@@ -10,7 +10,7 @@
     "test": "jest",
     "cdk": "cdk",
     "lint": "eslint --fix bin lib",
-    "secrets": "ts-node github.ts"
+    "secrets": "tsx github.ts --delete"
   },
   "devDependencies": {
     "@eslint/js": "*",
@@ -24,6 +24,7 @@
     "jest": "*",
     "ts-jest": "*",
     "ts-node": "*",
+    "tsx": "*",
     "typescript": "*",
     "typescript-eslint": "*"
   },
@@ -33,5 +34,6 @@
     "aws-cdk-lib": "*",
     "constructs": "*",
     "source-map-support": "*"
-  }
+  },
+  "type": "module"
 }

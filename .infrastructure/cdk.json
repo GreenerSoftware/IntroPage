@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/intropage.ts",
+  "app": "npx tsx bin/intropage.ts",
   "watch": {
     "include": [
       "**"
