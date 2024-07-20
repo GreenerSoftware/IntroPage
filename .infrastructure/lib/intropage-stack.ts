@@ -15,9 +15,15 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 const DOMAIN_NAME = 'greenersoftware.net';
 const ZONE_ID = 'Z090260119RJ9I6RT1BLQ';
 
-// Github
-const OWNER = 'greenersoftware';
-const REPO = 'IntroPage'
+// Github - set in secrets/github.sh
+// const OWNER = 'greenersoftware';
+// const REPO = 'IntroPage';
+
+function env(key: string): string {
+  const value = process.env[key];
+  if (!value) throw new Error(`No environment variable value for ${key}`);
+  return value;
+}
 
 export default class IntropageStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -63,7 +69,7 @@ export default class IntropageStack extends cdk.Stack {
     });
 
     // Set up OIDC access from Github Actions - this enables builds to deploy updates to the infrastructure
-    githubActions(this).ghaOidcRole({ owner: OWNER, repo: REPO });
+    githubActions(this).ghaOidcRole({ owner: env('OWNER'), repo: env('REPO') });
   }
 
   /**
