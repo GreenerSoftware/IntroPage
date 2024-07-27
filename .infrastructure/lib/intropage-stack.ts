@@ -16,7 +16,7 @@ const DOMAIN_NAME = 'greenersoftware.net';
 const ZONE_ID = 'Z090260119RJ9I6RT1BLQ';
 
 // Github - set in secrets/github.sh
-// const OWNER = 'greenersoftware';
+// const OWNER = 'GreenerSoftware';
 // const REPO = 'IntroPage';
 
 function env(key: string): string {
