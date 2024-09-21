@@ -53,7 +53,7 @@ export default class IntropageStack extends cdk.Stack {
       }],
     };
 
-    // Create the frontend and API using Cloudfront
+    // Create the web frontend using Cloudfront
     // The following calls will create variables in Github Actions that can be used to deploy the frontend and API:
     // * API_LAMBDA - the name of the Lambda function to update when deploying the API
     // * CLOUDFRONT_BUCKET - for uploading the frontend
