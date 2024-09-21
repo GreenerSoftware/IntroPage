@@ -12,7 +12,7 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 // AWS_PROFILE           - if you've set up a profile to access this account, set this in .infrastructure/secrets/aws.sh using export AWS_PROFILE=...
 
 // Route 53
-const DOMAIN_NAME = 'greenersoftware.net';
+const DOMAIN_NAME = 'home.greenersoftware.net';
 const ZONE_ID = 'Z090260119RJ9I6RT1BLQ';
 
 // Github - set in secrets/github.sh
