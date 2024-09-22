@@ -1,20 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intro Page</title>
-    <link rel="stylesheet" href="css/styles.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Greener Software</title>
+        <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
-    <main>
-        <h1>intro page</h1>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </main>
+        <main>
+                <h1>Greener Software</h1>
+                <!-- List the options around Greener Software infrastructure. -->
+                <ul>
+                        <li>
+                                <a href="https://alwayson.greenersoftware.net/deer-return/welcome"
+                                        target="_blank">
+                                        Always On
+                                </a> a digital service producing carbon emissions 24/7;
+                        </li>
+                        <li>
+                                <a href="https://timebound.greenersoftware.net/deer-return/welcome"
+                                        target="_blank">
+                                        Time Bound
+                                </a> a digital service producing carbon emissions ???;
+                        </li>
+                        <li>
+                                <a href="https://fullyresponsive.greenersoftware.net/deer-return/welcome"
+                                        target="_blank">
+                                        Fully Responsive
+                                </a> a digital service that only produces carbon emissions when a user interacts;
+                        </li>
+                </ul>
+                <br>
+
+                <!-- Show the AWS Cost Explorer as a clickable link, so that if they click into the image, they get the real-time feed. -->
+
+                <a href="https://us-east-1.console.aws.amazon.com/costmanagement/home?region=us-east-1#/cost-explorer?chartStyle=STACK&costAggregate=unBlendedCost&endDate=2024-09-21&excludeForecasting=false&filter=%5B%7B%22dimension%22:%7B%22id%22:%22LinkedAccount%22,%22displayValue%22:%22Linked%20account%22%7D,%22operator%22:%22EXCLUDES%22,%22values%22:%5B%7B%22value%22:%22058264171014%22,%22displayValue%22:%22SandboxAcc%20(058264171014)%22%7D,%7B%22value%22:%22773905172745%22,%22displayValue%22:%22MarkKiehlmann%20(773905172745)%22%7D%5D%7D%5D&futureRelativeRange=CUSTOM&granularity=Hourly&groupBy=%5B%22LinkedAccount%22%5D&historicalRelativeRange=LAST_7_DAYS&isDefault=false&reportArn=arn:aws:ce::773905172745:ce-saved-report%2F1db523f0-0780-47ab-94e0-f9f449e15f06&reportId=1db523f0-0780-47ab-94e0-f9f449e15f06&reportName=GreenerSoftware%207%20day%20hourly&showOnlyUncategorized=false&showOnlyUntagged=false&startDate=2024-09-15&usageAggregate=undefined&useNormalizedUnits=false"
+                        target="_blank">
+                        <img src="images/AWS_CostExplorer.png" alt="AWS Cost Explorer - Greener Software">
+                </a>
+                <br>
+
+                <!-- List the administrative pages as clickable link, to make the quicker and easier to access in a demo. -->
+
+                <h3>Administration: </h1>
+                <ul>
+                        <li>
+                                <a href="https://fullyresponsive.greenersoftware.net/admin"
+                                        target="_blank">
+                                        Submissions;
+                                </a>
+                          </li>
+                        <li>
+                                <a href="https://eu-west-2.console.aws.amazon.com/cloudwatch/home?region=eu-west-2#logsV2:log-groups/log-group/$252Faws$252Flambda$252FFullyresponsive-app735A5B53-xYJy8siErOeM"
+                                        target="_blank">
+                                        Lambda Logs;
+                                </a>
+                        </li>
+                        <li>
+                                <a href="https://eu-west-2.console.aws.amazon.com/dynamodbv2/home?region=eu-west-2#item-explorer?maximize=true&operation=SCAN&table=Fullyresponsive-submissions9C57A966-1WHRKG91F03KJ"
+                                        target="_blank">
+                                        Dynamo Database;
+                                </a>
+                        </li>
+
+                </ul>
+
+        </main>
 
 </body>
 </html>
