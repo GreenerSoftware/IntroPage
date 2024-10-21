@@ -29,6 +29,9 @@ export default class IntropageStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // This only needs to be created once per account. If you already have one, you can delete this.
+    githubActions(this).ghaOidcProvider();
+
     // You'll need a zone to create DNS records in. This will need to be referenced by a real domain name so that SSL certificate creation can be authorised.
     // NB the DOMAIN_NAME environment variable is defined in .infrastructure/secrets/domain.sh
     const zone = this.zone(DOMAIN_NAME, ZONE_ID);
