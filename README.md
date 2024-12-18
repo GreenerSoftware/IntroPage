@@ -8,6 +8,10 @@ https://github.com/GreenerSoftware/IntroPage/issues/4
 
 https://startbootstrap.com/template/modern-business
 
+### Favicon
+
+https://realfavicongenerator.net/
+
 ## Architecture
 
 Summary AWS architecture: https://docs.google.com/drawings/d/1_9FC5a_eQK-jCIXJWbQ7FaTh-Sgw7-Zm44ocpHQFwqU
