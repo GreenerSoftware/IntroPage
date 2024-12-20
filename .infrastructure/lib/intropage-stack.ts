@@ -12,7 +12,9 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 // AWS_PROFILE           - if you've set up a profile to access this account, set this in .infrastructure/secrets/aws.sh using export AWS_PROFILE=...
 
 // Route 53
+const ZONE_NAME = 'greenersoftware.net';
 const DOMAIN_NAME = 'home.greenersoftware.net';
+const DOMAIN_NAME_STAGING = 'staging.greenersoftware.net';
 const ZONE_ID = 'Z090260119RJ9I6RT1BLQ';
 
 // Github - set in secrets/github.sh
@@ -34,7 +36,7 @@ export default class IntropageStack extends cdk.Stack {
 
     // You'll need a zone to create DNS records in. This will need to be referenced by a real domain name so that SSL certificate creation can be authorised.
     // NB the DOMAIN_NAME environment variable is defined in .infrastructure/secrets/domain.sh
-    const zone = this.zone(DOMAIN_NAME, ZONE_ID);
+    const zone = this.zone(ZONE_NAME, ZONE_ID);
 
     // Bucket to back up infrastructure build inputs/outputs
     // This is useful for backup and for sharing build inputs between developers, but is commentsed out by default
@@ -64,6 +66,17 @@ export default class IntropageStack extends cdk.Stack {
     new WebFrontend(this, 'cloudfront', {
       zone,
       domainName: DOMAIN_NAME,
+      defaultIndex: true,
+      redirectWww: true,
+      distributionProps: {
+        defaultBehavior: defaultBehavior as cloudfront.BehaviorOptions,
+      },
+    });
+
+    // Create the staging frontend
+    new WebFrontend(this, 'staging', {
+      zone,
+      domainName: DOMAIN_NAME_STAGING,
       defaultIndex: true,
       redirectWww: true,
       distributionProps: {
