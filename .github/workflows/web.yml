@@ -23,8 +23,10 @@ jobs:
     name: Web
     runs-on: ubuntu-latest
     env:
-      bucket: ${{ vars.CLOUDFRONT_BUCKET }}
-      distributionId: ${{ vars.CLOUDFRONT_DISTRIBUTIONID }}
+      bucket1: ${{ vars.INTROPAGE_BUCKET }}
+      bucket2: ${{ vars.CLOUDFRONT_BUCKET }}
+      distributionId1: ${{ vars.INTROPAGE_DISTRIBUTIONID }}
+      distributionId2: ${{ vars.CLOUDFRONT_DISTRIBUTIONID }}
 
     steps:
 
@@ -39,9 +41,11 @@ jobs:
       working-directory: ${{ github.workflow }}
       run: |
         cd public
-        aws s3 sync --delete . s3://${bucket}/
+        aws s3 sync --delete . s3://${bucket1}/
+        aws s3 sync --delete . s3://${bucket2}/
 
     - name: Invalidate Cloudfront
       working-directory: ${{ github.workflow }}
       run: |
-        aws cloudfront create-invalidation --distribution-id $distributionId --paths '/*'
+        aws cloudfront create-invalidation --distribution-id $distributionId1 --paths '/*'
+        aws cloudfront create-invalidation --distribution-id $distributionId2 --paths '/*'
