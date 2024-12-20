@@ -14,7 +14,7 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 // Route 53
 const ZONE_NAME = 'greenersoftware.net';
 const DOMAIN_NAME = 'home.greenersoftware.net';
-const DOMAIN_NAME_STAGING = 'staging.greenersoftware.net';
+const STAGING_SUBDOMAIN = 'staging.greenersoftware.net';
 const ZONE_ID = 'Z090260119RJ9I6RT1BLQ';
 
 // Github - set in secrets/github.sh
@@ -63,6 +63,14 @@ export default class IntropageStack extends cdk.Stack {
     // * API_LAMBDA - the name of the Lambda function to update when deploying the API
     // * CLOUDFRONT_BUCKET - for uploading the frontend
     // * CLOUDFRONT_DISTRIBUTIONID - for invalidating the Cloudfront cache
+    new WebFrontend(this, 'intropage', {
+      zone,
+      defaultIndex: true,
+      redirectWww: true,
+      distributionProps: {
+        defaultBehavior: defaultBehavior as cloudfront.BehaviorOptions,
+      },
+    });
     new WebFrontend(this, 'cloudfront', {
       zone,
       domainName: DOMAIN_NAME,
@@ -76,7 +84,7 @@ export default class IntropageStack extends cdk.Stack {
     // Create the staging frontend
     new WebFrontend(this, 'staging', {
       zone,
-      domainName: DOMAIN_NAME_STAGING,
+      domainName: STAGING_SUBDOMAIN,
       defaultIndex: true,
       redirectWww: true,
       distributionProps: {
