@@ -63,19 +63,19 @@ export default class IntropageStack extends cdk.Stack {
     // * API_LAMBDA - the name of the Lambda function to update when deploying the API
     // * CLOUDFRONT_BUCKET - for uploading the frontend
     // * CLOUDFRONT_DISTRIBUTIONID - for invalidating the Cloudfront cache
-    new WebFrontend(this, 'intropage', {
-      zone,
-      defaultIndex: true,
-      redirectWww: true,
-      distributionProps: {
-        defaultBehavior: defaultBehavior as cloudfront.BehaviorOptions,
-      },
-    });
+    // new WebFrontend(this, 'intropage', {
+    //   zone,
+    //   defaultIndex: true,
+    //   redirectWww: false,
+    //   distributionProps: {
+    //     defaultBehavior: defaultBehavior as cloudfront.BehaviorOptions,
+    //   },
+    // });
     new WebFrontend(this, 'cloudfront', {
       zone,
       domainName: DOMAIN_NAME,
       defaultIndex: true,
-      redirectWww: true,
+      redirectWww: false,
       distributionProps: {
         defaultBehavior: defaultBehavior as cloudfront.BehaviorOptions,
       },
@@ -86,7 +86,7 @@ export default class IntropageStack extends cdk.Stack {
       zone,
       domainName: STAGING_SUBDOMAIN,
       defaultIndex: true,
-      redirectWww: true,
+      redirectWww: false,
       distributionProps: {
         defaultBehavior: defaultBehavior as cloudfront.BehaviorOptions,
       },
